@@ -1,0 +1,80 @@
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:servidor" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:servidor">
+<types>
+<xsd:schema targetNamespace="urn:servidor">
+<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+</xsd:schema>
+</types>
+<message name="getRestaRequest">
+<part name="0" type="xsd:number"/>
+<part name="1" type="xsd:number"/>
+</message>
+<message name="getRestaResponse">
+<part name="return" type="xsd:String"/>
+</message>
+<message name="getCuadradoRequest">
+<part name="0" type="xsd:number"/>
+</message>
+<message name="getCuadradoResponse">
+<part name="return" type="xsd:String"/>
+</message>
+<message name="getDivisionRequest">
+<part name="0" type="xsd:number"/>
+<part name="1" type="xsd:number"/>
+</message>
+<message name="getDivisionResponse">
+<part name="return" type="xsd:String"/>
+</message>
+<portType name="servidorPortType">
+<operation name="getResta">
+<documentation>Resta</documentation>
+<input message="tns:getRestaRequest"/>
+<output message="tns:getRestaResponse"/>
+</operation>
+<operation name="getCuadrado">
+<documentation>Cuadrado</documentation>
+<input message="tns:getCuadradoRequest"/>
+<output message="tns:getCuadradoResponse"/>
+</operation>
+<operation name="getDivision">
+<documentation>Division</documentation>
+<input message="tns:getDivisionRequest"/>
+<output message="tns:getDivisionResponse"/>
+</operation>
+</portType>
+<binding name="servidorBinding" type="tns:servidorPortType">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="getResta">
+<soap:operation soapAction="urn:servidor#getResta" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:servidor" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:servidor" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="getCuadrado">
+<soap:operation soapAction="urn:servidor#getCuadrado" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:servidor" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:servidor" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+<operation name="getDivision">
+<soap:operation soapAction="urn:servidor#getDivision" style="rpc"/>
+<input>
+<soap:body use="encoded" namespace="urn:servidor" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</input>
+<output>
+<soap:body use="encoded" namespace="urn:servidor" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+</output>
+</operation>
+</binding>
+<service name="servidor">
+<port name="servidorPort" binding="tns:servidorBinding">
+<soap:address location="http://localhost/TareaOnline5/Servidor.php"/>
+</port>
+</service>
+</definitions>
